@@ -1,5 +1,6 @@
 'use client';
 
+import { X } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { BsHandbag } from 'react-icons/bs';
@@ -48,12 +49,16 @@ export default function Header() {
           onClick={() => setOpenMenu(prev => !prev)}
           className="flex items-center gap-3 cursor-pointer group md:hidden"
         >
-          <div className="space-y-1 ">
-            <div className="h-0.5 w-5 bg-black group-hover:bg-red transition-all duration-200 rounded-md" />
-            <div className="h-0.5 w-5 bg-black group-hover:bg-red transition-all duration-200 rounded-md" />
-            <div className="h-[2.5px] w-5 group-hover:w-3 bg-black group-hover:bg-red transition-all duration-300 rounded-md" />
-          </div>
-          <p className="text-[13px] group-hover:text-red transition-all duration-200">
+          {openMenu ? (
+            <X className="w-7 h-7 group-hover:text-red transition-all duration-200" />
+          ) : (
+            <div className="space-y-1 ">
+              <div className="h-0.5 w-5 bg-black group-hover:bg-red transition-all duration-200 rounded-md" />
+              <div className="h-0.5 w-5 bg-black group-hover:bg-red transition-all duration-200 rounded-md" />
+              <div className="h-[2.5px] w-5 group-hover:w-3 bg-black group-hover:bg-red transition-all duration-300 rounded-md" />
+            </div>
+          )}
+          <p className="text-[13px] select-none group-hover:text-red transition-all duration-200">
             Меню
           </p>
         </div>
