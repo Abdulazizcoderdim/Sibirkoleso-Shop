@@ -76,3 +76,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.menu-item__image--tires {
+  fill: #1a1a1a;
+  background-size: contain;
+  display: block;
+  height: 40px;
+  margin-bottom: 27px;
+  transition: fill 0.4s linear;
+  width: 40px;
+}
