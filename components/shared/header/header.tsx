@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { BsHandbag } from 'react-icons/bs';
 import { GoPerson } from 'react-icons/go';
+import DropdownnMenu from '../dropdown-menu';
 import MaxWidth from '../max-width';
 import MobileMenu from '../mobile-menu';
 
@@ -20,16 +21,7 @@ export default function Header() {
             <h1 className="text-xl font-bold font-sans">Сибирь Колесо</h1>
           </div>
           <div className="w-[1px] h-8 bg-zinc-300 max-md:hidden" />
-          <div className="flex items-center gap-3 cursor-pointer group max-md:hidden">
-            <div className="space-y-1 ">
-              <div className="h-0.5 w-5 bg-black group-hover:bg-red transition-all duration-200 rounded-md" />
-              <div className="h-0.5 w-5 bg-black group-hover:bg-red transition-all duration-200 rounded-md" />
-              <div className="h-[2.5px] w-5 group-hover:w-3 bg-black group-hover:bg-red transition-all duration-300 rounded-md" />
-            </div>
-            <p className="text-[13px] group-hover:text-red transition-all duration-200">
-              Меню
-            </p>
-          </div>
+          <DropdownnMenu />
         </div>
         <div className="flex items-center gap-10 max-md:hidden">
           {cart ? (
