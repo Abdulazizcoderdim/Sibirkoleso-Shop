@@ -34,7 +34,7 @@ export default function DropdownnMenu() {
           </p>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="max-md:hidden">
         <MaxWidth className="py-10 flex items-center justify-between">
           <div className="flex items-center gap-16">
             <div className="group ">

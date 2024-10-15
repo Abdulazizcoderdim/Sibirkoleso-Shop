@@ -2,6 +2,7 @@
 
 import { X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { BsHandbag } from 'react-icons/bs';
 import { GoPerson } from 'react-icons/go';
@@ -34,7 +35,9 @@ export default function Header() {
           ) : (
             <BsHandbag className="w-5 opacity-50 h-5" />
           )}
-          <GoPerson className="w-5 h-5 cursor-pointer" />
+          <Link href={'/auth/register'}>
+            <GoPerson className="w-5 h-5 cursor-pointer" />
+          </Link>
         </div>
         {/* mobile */}
         <div
