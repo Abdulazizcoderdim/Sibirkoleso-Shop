@@ -19,6 +19,6 @@ const tyreSchema = new mongoose.Schema({
   },
 });
 
-const Tyre = mongoose.models.User || mongoose.model('Tyre', tyreSchema);
+const Tyre = mongoose.models.Tyre || mongoose.model('Tyre', tyreSchema);
 
 export default Tyre;

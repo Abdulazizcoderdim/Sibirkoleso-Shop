@@ -8,23 +8,20 @@ export async function POST(req: Request) {
     await connectToDatabase();
     const query = {} as TyresQuery;
 
-    const { widthValue, heightValue, diameterValue, manufacturer } =
-      await req.json();
+    const { width, height, diameter, manufacturer } = await req.json();
 
-    if (widthValue) {
-      query.width = widthValue;
+    if (width) {
+      query.width = width;
     }
-    if (heightValue) {
-      query.height = heightValue;
+    if (height) {
+      query.height = height;
     }
-    if (diameterValue) {
-      query.diameter = diameterValue;
+    if (diameter) {
+      query.diameter = diameter;
     }
     if (manufacturer) {
       query.manufacturer = manufacturer;
     }
-
-    
 
     const result = await Tyre.find(query);
     return NextResponse.json({ success: true, tyres: result }, { status: 200 });
@@ -39,7 +36,7 @@ export async function GET() {
     await connectToDatabase();
 
     const tyres = await Tyre.find({});
-    
+
     return NextResponse.json({ success: true, tyres }, { status: 200 });
   } catch (error) {
     const result = error as Error;
