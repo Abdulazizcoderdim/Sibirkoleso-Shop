@@ -3,7 +3,7 @@ import { Icons } from '../icons';
 
 export default function MobileMenu() {
   return (
-    <div className="absolute w-full md:hidden top-[80px] min-h-96 right-0 left-0 pt-5 pb-10 bg-white shadow-sm">
+    <div className="absolute sm:px-5 px-3 z-10 w-full md:hidden top-[80px] min-h-96 right-0 left-0 pt-5 pb-10 bg-white shadow-sm">
       <div className="space-y-5">
         <div className="flex items-center justify-between border-b-2 pb-8">
           <div className="group ">
