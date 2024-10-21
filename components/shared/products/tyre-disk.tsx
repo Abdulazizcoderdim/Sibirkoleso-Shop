@@ -41,6 +41,16 @@ export default function TyreDisk() {
         <MaxWidth>
           {active === 'Шины' ? <TyresProduct /> : <DiskProduct />}
         </MaxWidth>
+        <div className="w-full h-[1px] bg-neutral-600 mt-4" />
+        <div className="flex justify-center items-center">
+          <button
+            title="Поиск"
+            type="button"
+            className="rounded-md bg-[#666666] text-sm mt-6 text-white px-9 py-4"
+          >
+            Поиск
+          </button>
+        </div>
       </div>
     </div>
   );
