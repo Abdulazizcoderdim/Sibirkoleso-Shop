@@ -23,6 +23,7 @@ export default function TyresProduct() {
 
       if (res.data.success) {
         setTyres(res.data.tyres);
+        
       }
       console.log(res.data);
     }
