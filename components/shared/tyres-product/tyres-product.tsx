@@ -5,10 +5,40 @@ import { cn } from '@/lib/utils';
 import { TyresQuery } from '@/types';
 import axios from 'axios';
 import { CarFront, SlidersVertical, Snowflake, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import SelectCar from '../select-car';
 
+interface TyresProductProps {
+  width: number;
+  height: number;
+  diameter: string;
+  manufacturer: string;
+}
+
+const reducer = (state: TyresProductProps, action) => {
+  switch (action.type) {
+    case 'width':
+      return { ...state, width: action.payload };
+    case 'height':
+      return { ...state, height: action.payload };
+    case 'diameter':
+      return { ...state, diameter: action.payload };
+    case 'manufacturer':
+      return { ...state, manufacturer: action.payload };
+    case 'clear':
+      return { ...state, width: 0, height: 0, diameter: '', manufacturer: '' };
+    default:
+      return state;
+  }
+};
+
 export default function TyresProduct() {
+  const [state, dispatch] = useReducer(reducer, {
+    width: 0,
+    height: 0,
+    diameter: '',
+    manufacturer: '',
+  });
   const [carParam, setCarParam] = useState<'По параметрам' | 'По автомобилям'>(
     'По параметрам'
   );
@@ -23,12 +53,26 @@ export default function TyresProduct() {
 
       if (res.data.success) {
         setTyres(res.data.tyres);
-        
       }
       console.log(res.data);
     }
     getTyres();
   }, []);
+
+  async function getCar() {
+    const res = await axios.post('/api/tyres', {
+      width: state.width,
+      height: state.height,
+      diameter: state.diameter,
+      manufacturer: state.manufacturer,
+    });
+
+    if (res.data.success) {
+      setTyres(res.data.tyres);
+    }
+
+    console.log('widthhhh, ', res.data);
+  }
 
   return (
     <div className="space-y-4 w-full">
@@ -65,6 +109,10 @@ export default function TyresProduct() {
           <div className="overflow-auto h-72">
             {tyres.map((tyre, i) => (
               <p
+                onClick={() => {
+                  dispatch({ type: 'width', payload: tyre.width });
+                  getCar();
+                }}
                 key={i}
                 className="py-3 cursor-pointer text-neutral-600 px-4 hover:bg-neutral-200"
               >
@@ -78,6 +126,10 @@ export default function TyresProduct() {
           <div className="overflow-auto h-72">
             {tyres.map((tyre, i) => (
               <p
+                onClick={() => {
+                  dispatch({ type: 'height', payload: tyre.height });
+                  getCar();
+                }}
                 key={i}
                 className="py-3 cursor-pointer text-neutral-600 px-4 hover:bg-neutral-200"
               >
@@ -92,6 +144,10 @@ export default function TyresProduct() {
             {tyres.map((tyre, i) => {
               return (
                 <p
+                  onClick={() => {
+                    dispatch({ type: 'diameter', payload: tyre.diameter });
+                    getCar();
+                  }}
                   key={i}
                   className="py-3 cursor-pointer text-neutral-600 px-4 hover:bg-neutral-200"
                 >
@@ -108,6 +164,13 @@ export default function TyresProduct() {
           <div className="overflow-auto h-72">
             {tyres.map((tyre, i) => (
               <p
+                onClick={() => {
+                  dispatch({
+                    type: 'manufacturer',
+                    payload: tyre.manufacturer,
+                  });
+                  getCar();
+                }}
                 key={i}
                 className="py-3 cursor-pointer text-neutral-600 px-4 hover:bg-neutral-200"
               >
